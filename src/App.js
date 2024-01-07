@@ -64,7 +64,7 @@ function App() {
 
   return (
     <div className="App bg-[#FFFFFF] h-screen">
-      <Router>
+      <Router  basename={process.env.PUBLIC_URL}>
         <Routes>
           {/* private routes */}
           <Route path='/*' element={<PrivateRoutes is_authenticated={is_authenticated} isValidUser={type === 'user'} redirect='/login' children={<UserRoutes role={userData?.role} />} />} />
