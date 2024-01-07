@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/taskyflow-front/static/css/main.40c5ee39.css",
+    "main.js": "/taskyflow-front/static/js/main.cfb32d05.js",
+    "index.html": "/taskyflow-front/index.html",
+    "main.40c5ee39.css.map": "/taskyflow-front/static/css/main.40c5ee39.css.map",
+    "main.cfb32d05.js.map": "/taskyflow-front/static/js/main.cfb32d05.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.40c5ee39.css",
+    "static/js/main.cfb32d05.js"
+  ]
+}
