@@ -260,7 +260,7 @@ const OneCard = ({ task, closeModal }) => {
                         </div>
                         {/* bootsrap col */}
                         <div
-                            className="grid grid-cols-2 md:grid-cols-1 overflow-y-auto gap-4 
+                            className="grid grid-cols-2 lg:grid-cols-1 overflow-y-auto gap-4 
                         rounded-lg px-4 pb-5 pt-4 bg-[#EEF2F5] h-full"
                         >
                             <div className=' text-left sm:mb-3'>

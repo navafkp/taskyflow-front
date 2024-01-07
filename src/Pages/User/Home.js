@@ -46,8 +46,8 @@ const Home = () => {
   }, [meetingData])
 
 
-   // onchange password update
-   const handlePassword = (e) => {
+  // onchange password update
+  const handlePassword = (e) => {
     if (!e.target.value) {
       setError('')
     }
@@ -55,8 +55,8 @@ const Home = () => {
   }
 
 
-   // joing meeting when clicking button
-   const handleJoin = (id, roomID) => {
+  // joing meeting when clicking button
+  const handleJoin = (id, roomID) => {
     const exactMeeting = meetingData && meetingData?.find((meet) => {
       if (meet.id == id) { return meet }
     })
@@ -70,7 +70,7 @@ const Home = () => {
       }
     }
   }
-  
+
 
   return (
     <div className='flex'>
@@ -86,12 +86,12 @@ const Home = () => {
         </div>
 
         <div
-          className='flex flex-row justify-between mb-5 mt-6'
+          className='flex flex-row justify-between mb-5 mt-6 gap-2'
         >
           {userData?.role === 'manager' &&
             <div>
               <button onClick={() => setShowForm(true)}
-                className='bg-[#D7CDCC] text-sm border border-black text-center
+                className='bg-[#D7CDCC] md:text-xs md:px-1 text-sm border border-black text-center
                text-black px-3 py-1 rounded '
               >
                 CREATE USER
@@ -104,21 +104,17 @@ const Home = () => {
           <div>
             <Link to='/board'>
               <button
-                className='bg-[#D7CDCC] text-sm border
+                className='bg-[#D7CDCC] md:text-xs md:px-1 text-sm border
                border-black text-center text-black px-3 py-1 rounded '
               >
                 VIEW BOARDS
-                <span
-                  className='font-bold text-lg'>
-                  +
-                </span>
               </button>
             </Link>
           </div>
           <div>
             <button
               onClick={() => setBoardForm(true)}
-              className='bg-[#D7CDCC] text-sm border border-black text-center
+              className='bg-[#D7CDCC] md:text-xs md:px-1 text-sm border border-black text-center
              text-black px-3 py-1 rounded '>
               CREATE BOARD
               <span className='font-bold text-lg'>
@@ -128,9 +124,9 @@ const Home = () => {
 
         </div>
 
-        <div className='flex justify-between'>
+        <div className='flex justify-between md:flex-col'>
           <div
-            className='bg-[#b278a5] block w-[50%]  p-2 m-2 rounded-lg'
+            className='bg-[#b278a5] block w-[50%]  p-2 m-2 rounded-lg md:w-full'
           >
             <h3
               className='text-center mb-2   text-white font-extrabold text-xl '
@@ -183,20 +179,19 @@ const Home = () => {
               {meetingState && meetingState?.length > 0 && meetingState.slice(0, 2).map((meet) => (
                 (
                   <div
-                    className='flex justify-around  bg-white p-4 mb-2 rounded-lg'>
+                    className='text-center justify-around  bg-white p-4 mb-2 rounded-lg'>
 
                     <div
                       className='block  md:text-sm uppercase'>
                       <h2>{meet.roomID}</h2>
                       <p>Starts: {new Date(meet.starting_time * 1000).toLocaleString()}</p>
-                      <p>Starts: {meet.starting_time}</p>
-                      <p>Starts: {new Date(meet.expiration_time * 1000).toLocaleString()}</p>
+                      <p>Ends: {new Date(meet.expiration_time * 1000).toLocaleString()}</p>
                     </div>
 
-                    <div className='m-auto'>
-                    {new Date(formattedDate) >= new Date(meet.starting_time * 1000) ? (
+                    <div className='m-auto text-center'>
+                      {new Date(formattedDate) >= new Date(meet.starting_time * 1000) ? (
                         <>
-                          <input className='rounded-lg border border-x-black px-3 mr-1'
+                          <input className='rounded-lg border border-x-black px-3 mt-2'
                             placeholder='Enter meeting code'
                             value={password} onChange={handlePassword}
                           />
@@ -218,7 +213,7 @@ const Home = () => {
 
                     </div>
 
-                    
+
                   </div>
                 )
               ))}

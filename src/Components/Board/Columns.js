@@ -25,7 +25,7 @@ const Columns = ({ columnTitle, tasks, columnid, boardId }) => {
 
     return (
         <div className='text-center  font-bold bg-[#EEF2F5] rounded-xl 
-        m-3 flex-none w-[22%] md:w-[45%] sm:w-[90%]'>
+        m-3 flex-none w-[22%] lg:w-[45%] sm:w-[90%]'>
             <div className='flex justify-around border-b border-[#9C528B]'>
                 <input
                     className={`p-2  ${editableFields === true ? 'bg-white border'

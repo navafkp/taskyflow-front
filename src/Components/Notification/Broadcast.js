@@ -50,13 +50,13 @@ const Broadcast = ({ limit }) => {
         result.map((notification) => {
           return (
             <div
-              className='bg-[#FFFFFF]  border p-3 mb-3 flex flex-row  
+              className='bg-[#FFFFFF]  border md:block p-3 mb-3 flex flex-row  
               justify-around rounded-md text-justify'
             >
               <p className='font-bold text-black'>
                 {notification.content}
               </p>
-              <p className='pt-4 text-black'>
+              <p className='pt-4 text-black md:pt-1'>
                 {new Date(notification.created_at).toLocaleString()}
               </p>
             </div>)
