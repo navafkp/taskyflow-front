@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/taskyflow-front/static/css/main.2f7cc546.css",
-    "main.js": "/taskyflow-front/static/js/main.d71e5ea8.js",
+    "main.css": "/taskyflow-front/static/css/main.e0b58569.css",
+    "main.js": "/taskyflow-front/static/js/main.ecd67248.js",
     "index.html": "/taskyflow-front/index.html",
-    "main.2f7cc546.css.map": "/taskyflow-front/static/css/main.2f7cc546.css.map",
-    "main.d71e5ea8.js.map": "/taskyflow-front/static/js/main.d71e5ea8.js.map"
+    "main.e0b58569.css.map": "/taskyflow-front/static/css/main.e0b58569.css.map",
+    "main.ecd67248.js.map": "/taskyflow-front/static/js/main.ecd67248.js.map"
   },
   "entrypoints": [
-    "static/css/main.2f7cc546.css",
-    "static/js/main.d71e5ea8.js"
+    "static/css/main.e0b58569.css",
+    "static/js/main.ecd67248.js"
   ]
 }
