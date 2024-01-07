@@ -137,7 +137,7 @@ const Home = () => {
               // Render the board only if canViewBoard is true
               return canViewBoard && (
                 <div
-                  className='bg-white block px-2 py-1 md:h-[10%] my-2 rounded-lg h-[25%]'
+                  className='bg-white block px-2 py-1  my-2 rounded-lg'
                   key={board.id}>
                   <Link to={`/boards/${board.slug}+${board.id}`}
                     className=' capitalize  flex justify-between items-center p-3'>
@@ -162,7 +162,7 @@ const Home = () => {
             </div>
           </div>
           <div
-            className='bg-[#b278a5] w-[50%] m-2 p-3 rounded-lg'>
+            className='bg-[#b278a5] w-[50%] md:w-full m-2 p-3 rounded-lg'>
             <h3
               className='text-center mb-2  font-extrabold text-xl text-white'>MEETINGS</h3>
             <div
@@ -206,7 +206,7 @@ const Home = () => {
                           </div>
                         </>
 
-                      ) : <p className='bg-[#D7CDCC] px-3 py-1 sm:text-xs  rounded-lg'>
+                      ) : <p className='border-[#D7CDCC] border px-3 py-1 sm:text-xs  rounded-lg'>
                         Not Yet Started</p>
 
                       }

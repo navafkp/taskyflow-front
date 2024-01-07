@@ -107,7 +107,7 @@ const Users = () => {
                         USERS LIST
                     </h1>
                 </div>
-                <div className='flex flex-row justify-between mb-5 mt-6'>
+                <div className='flex flex-row md:!flex-col md:items-center md:mb-2 justify-between mb-5 mt-6'>
                     <div>
                         <button
                             onClick={handleForm}
@@ -133,10 +133,10 @@ const Users = () => {
 
                 {/* data starts here */}
                 <div className="py-2 align-middle overflow-x-auto ">
-                    <div className="shadow  sm:rounded-lg ">
+                    <div className="shadow  sm:rounded-lg w-max">
                         {load && <Loading />}
                         <table
-                            className="text-sm text-white block border-0 ">
+                            className="text-sm text-white block border-0 w-max">
                             <thead
                                 className="bg-[#1D1E2C] text-xs uppercase font-medium">
                                 <tr>

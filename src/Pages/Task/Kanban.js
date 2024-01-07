@@ -146,7 +146,7 @@ const Kanban = () => {
         </div>
         <DragDropContext onDragEnd={onDragEnd} >
 
-          <div className='flex justify-between'>
+          <div className='flex justify-between md:flex-col'>
             <h2 className='p-3 uppercase font-bold'>{board.split('+')[0]}</h2>
             {boardData && user && boardData?.visibility === 'private' && (
               user?.id.toString() === boardData?.user_id.toString() && (

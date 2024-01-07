@@ -79,7 +79,7 @@ const UserProfile = () => {
                 <div
                     className='flex lg:flex-col-reverse  text-white bg-[#b278a5] 
                 mx-auto box-border 
-                py-8 max-h-max w-[80%]  px-10 rounded-lg relative'
+                py-8 max-h-max w-[80%] md:w-full md:px-3  px-10 rounded-lg relative'
                 >
                     {load && <Loading />}
                     <div
