@@ -14,6 +14,9 @@ const userslistSlice = createSlice({
     name: 'userslistdata',
     initialState: initialstate.users,
     reducers: {
+        clearUsers: (state) => {
+            return initialstate.users;
+        },
         alluserUpdate: (state, action) => {
             return action.payload
         },

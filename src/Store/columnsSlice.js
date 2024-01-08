@@ -23,6 +23,11 @@ export const addingColumns = createAsyncThunk('user/addingColumns', async ({ acc
 const columnsSlice = createSlice({
     name: 'columns',
     initialState: initialstate.columns,
+    reducers: {
+        clearcolumns: (state) => {
+            return initialstate.columns;
+        },
+    },
     extraReducers: (builder) => {
         builder
             .addCase(getAllColumns.fulfilled, (state, action) => {
@@ -38,4 +43,5 @@ const columnsSlice = createSlice({
     }
 })
 
+export const { clearcolumns } = columnsSlice.actions
 export default columnsSlice.reducer;

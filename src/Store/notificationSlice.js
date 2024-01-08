@@ -20,6 +20,11 @@ export const getPersonalNotification = createAsyncThunk('user/getPersonalNotific
 const notificationSlice = createSlice({
     name: 'notification',
     initialState: initialstate.notifications,
+    reducers: {
+        clearNotification: (state) => {
+            return initialstate.notifications;
+        },
+    },
     extraReducers: (builder) => {
         builder
             .addCase(getBroadcastNotification.fulfilled, (state, action) => {
@@ -41,5 +46,5 @@ const notificationSlice = createSlice({
             })
     }
 })
-
+export const { clearNotification } = notificationSlice.actions
 export default notificationSlice.reducer;

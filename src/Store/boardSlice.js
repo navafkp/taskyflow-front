@@ -24,6 +24,10 @@ const boardSlice = createSlice({
     name: 'boards',
     initialState: initialstate.allboards,
     reducers: {
+        clearBoard: (state) => {
+            return initialstate.allboards;
+        },
+
         BoardUpdate: (state, action) => {
             return (
                 [...state, action.payload]
@@ -46,5 +50,5 @@ const boardSlice = createSlice({
     }
 })
 
-export const { BoardUpdate, updateBoarddDeletion } = boardSlice.actions;
+export const { BoardUpdate, updateBoarddDeletion, clearBoard} = boardSlice.actions;
 export default boardSlice.reducer

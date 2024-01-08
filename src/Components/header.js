@@ -15,10 +15,16 @@ const Header = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  // while loging out, cleared user data from state and redirect logging page
+  // while loging out, cleared all data from state and redirect logging page
   const logoutUser = () => {
-    dispatch(clearUser())
-    dispatch(Logout())
+    dispatch(clearUser());
+    dispatch(clearBoard());
+    dispatch(clearUsers());
+    dispatch(clearcolumns());
+    dispatch(clearNotification());
+    dispatch(clearCard());
+    dispatch(clearMeet());
+    dispatch(Logout());
     navigate('/login')
   }
 

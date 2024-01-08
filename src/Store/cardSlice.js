@@ -65,6 +65,9 @@ const cardSlice = createSlice({
     name: 'cardData',
     initialState: initialstate.cardData,
     reducers: {
+        clearCard: (state) => {
+            return initialstate.cardData;
+        },
         cardsUpdate: (state, action) => {
             return (
                 { ...state, cards: action.payload }
@@ -145,5 +148,5 @@ const cardSlice = createSlice({
     }
 })
 
-export const { cardsUpdate, assigneeUpdate, updateCardDeleteion } = cardSlice.actions;
+export const { cardsUpdate, assigneeUpdate, updateCardDeleteion, clearCard } = cardSlice.actions;
 export default cardSlice.reducer;

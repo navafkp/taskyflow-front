@@ -14,6 +14,9 @@ const MeetingSlice = createSlice({
     name: 'meetingData',
     initialState: initialstate.meetingData,
     reducers: {
+        clearMeet: (state) => {
+            return initialstate.meetingData;
+        },
         updateMeetingData: (state, action) => {
             return (
                 [...state, action.payload]
@@ -31,5 +34,5 @@ const MeetingSlice = createSlice({
     }
 })
 
-export const { updateMeetingData, meetingDelete } = MeetingSlice.actions
+export const { updateMeetingData, meetingDelete, clearMeet } = MeetingSlice.actions
 export default MeetingSlice.reducer
