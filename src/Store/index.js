@@ -1,6 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authSlice from "./authSlice";
-import { persistReducer, persistStore } from "redux-persist";
+import {
+    persistStore,
+    persistReducer,
+    FLUSH,
+    REHYDRATE,
+    PAUSE,
+    PERSIST,
+    PURGE,
+    REGISTER,
+} from 'redux-persist'
+
 import storage from "redux-persist/lib/storage";
 import userdataSlice from "./userdataSlice";
 import { combineReducers } from "@reduxjs/toolkit";
@@ -27,12 +37,19 @@ const rootReducer = combineReducers({
     boards: boardSlice,
     columns: columnsSlice,
     cardData: cardSlice,
-    meetingData:MeetingSlice,
+    meetingData: MeetingSlice,
 });
 
 const persistRootReducer = persistReducer(persistConfig, rootReducer);
 const store = configureStore({
     reducer: persistRootReducer,
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: {
+                ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE,
+                    REGISTER],
+            },
+        }),
 
 });
 // persist all data to local storage
