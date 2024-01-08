@@ -8,6 +8,12 @@ import { IoNotificationsCircleOutline, IoLogOutOutline } from "react-icons/io5";
 import { BsCameraVideoFill } from "react-icons/bs";
 import { useState } from 'react';
 import { CgMenuRound } from "react-icons/cg";
+import { clearBoard } from '../Store/boardSlice';
+import { clearcolumns } from '../Store/columnsSlice';
+import { clearNotification } from '../Store/notificationSlice';
+import { clearCard } from '../Store/cardSlice';
+import { clearMeet } from '../Store/MeetingSlice';
+import { clearUsers } from '../Store/userslistSlice';
 
 const Header = () => {
   const userData = useSelector(state => state.userData)

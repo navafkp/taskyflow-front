@@ -53,7 +53,7 @@ const userslistSlice = createSlice({
     }
 })
 
-export const { alluserUpdate, addNewUser, userBlockUpdate } = userslistSlice.actions
+export const { alluserUpdate, addNewUser, userBlockUpdate, clearUsers} = userslistSlice.actions
 export default userslistSlice.reducer
 
 
