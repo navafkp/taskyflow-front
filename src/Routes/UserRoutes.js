@@ -14,7 +14,7 @@ import Home from '../Pages/User/Home'
 const UserRoutes = ({ role }) => {
     return (
         <Routes>
-            <Route path='/home' exact element={<Home />} />
+            <Route path='/dashboard' exact element={<Home />} />
             <Route path='/profile' exact element={<UserProfile />} />
             <Route path='/notification' element={<Notification />} />
             <Route path='/board' element={<Boards />} />

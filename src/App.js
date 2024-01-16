@@ -70,8 +70,8 @@ function App() {
           <Route path='/*' element={<PrivateRoutes is_authenticated={is_authenticated} isValidUser={type === 'user'} redirect='/login' children={<UserRoutes role={userData?.role} />} />} />
 
           {/* Public Routes */}
-          <Route path='/login' element={!is_authenticated ? <Login /> : <Navigate to='/home' />} />
-          <Route path='/register' element={!is_authenticated ? <Register /> : <Navigate to='/home' />} />
+          <Route path='/login' element={!is_authenticated ? <Login /> : <Navigate to='/dashboard' />} />
+          <Route path='/register' element={!is_authenticated ? <Register /> : <Navigate to='/dashboard' />} />
           
         </Routes>
       </Router>
