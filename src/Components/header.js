@@ -34,6 +34,10 @@ const Header = () => {
     navigate('/login')
   }
 
+  const navigateTo = (path) => {
+    navigate(path);
+  };
+
   return (
     <div
       className={`flex   ${showNav && 'md:w-[100vw]  md:h-[100vh] md:bg-black/50 md:z-50 md:absolute'}`}
@@ -51,12 +55,12 @@ const Header = () => {
           </div>
           <div className='flex flex-col  text-white my-menu'>
 
-          <div >
-              <NavLink className='flex p-3 items-center gap-2' to='/dashboard' > hjh </NavLink>
+            <div className='flex p-3 items-center gap-2' onClick={() => navigateTo('/dashboard')}>
+              <MdDashboard /> Dashboard
             </div>
 
 
-            <div >
+            {/* <div >
               <NavLink className='flex p-3 items-center gap-2' to='/home'>
                 <MdDashboard />Dashboard </NavLink>
             </div>
@@ -64,9 +68,9 @@ const Header = () => {
             <div >
               <NavLink className='flex p-3 items-center gap-2' to='/home' >
                 <MdDashboard /> Dashboard </NavLink>
-            </div>
+            </div> */}
 
-           
+
 
             <div >
               <NavLink className='flex p-3 items-center gap-2' to='/board' >
