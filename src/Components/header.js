@@ -52,8 +52,15 @@ const Header = () => {
           <div className='flex flex-col  text-white my-menu'>
             <div >
               <NavLink className='flex p-3 items-center gap-2' to='/home'>
-                <MdDashboard />Dashboard</NavLink>
+                <MdDashboard />Dashboard </NavLink>
             </div>
+
+            <div >
+              <NavLink className='flex p-3 items-center gap-2' to='/home' >
+                <MdDashboard /> Dashboard </NavLink>
+            </div>
+
+
             <div >
               <NavLink className='flex p-3 items-center gap-2' to='/board' >
                 <MdOutlineSpaceDashboard />Board</NavLink>
