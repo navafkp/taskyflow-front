@@ -60,11 +60,17 @@ const Header = () => {
                 <MdDashboard /> Dashboard </NavLink>
             </div>
 
+            <div >
+              <NavLink className='flex p-3 items-center gap-2' to='/board' >
+                <MdDashboard /> Dashboard </NavLink>
+            </div>
+
 
             <div >
               <NavLink className='flex p-3 items-center gap-2' to='/board' >
                 <MdOutlineSpaceDashboard />Board</NavLink>
             </div>
+
             <div >
               <NavLink className='flex p-3 items-center gap-2' to='/notification' >
                 <IoNotificationsCircleOutline />Notification</NavLink>
