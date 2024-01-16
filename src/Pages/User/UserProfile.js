@@ -36,16 +36,61 @@ const UserProfile = () => {
     };
 
     // Function to handle image upload
-    const handleUpload = (e) => {
-        const file = e.target.files[0];
-        const reader = new FileReader();
-        reader.onloadend = () => {
-            setImage(reader.result);
+    // const handleUpload = (e) => {
+    //     const file = e.target.files[0];
+    //     const reader = new FileReader();
+    //     reader.onloadend = () => {
+    //         setImage(reader.result);
+    //     };
+    //     if (file) {
+    //         reader.readAsDataURL(file);
+    //     }
+    // };
+
+    // Example using canvas to resize image
+const handleUpload = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+        const img = new Image();
+        img.src = reader.result;
+
+        img.onload = () => {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+
+            // Resize the image if needed
+            const maxWidth = 800; // Set your maximum width
+            const maxHeight = 600; // Set your maximum height
+
+            let width = img.width;
+            let height = img.height;
+
+            if (width > maxWidth || height > maxHeight) {
+                const ratio = Math.min(maxWidth / width, maxHeight / height);
+                width *= ratio;
+                height *= ratio;
+            }
+
+            canvas.width = width;
+            canvas.height = height;
+
+            ctx.drawImage(img, 0, 0, width, height);
+
+            // Convert the canvas content to base64
+            const resizedImage = canvas.toDataURL('image/jpeg');
+
+            // Set the resized image in state
+            setImage(resizedImage);
         };
-        if (file) {
-            reader.readAsDataURL(file);
-        }
     };
+
+    if (file) {
+        reader.readAsDataURL(file);
+    }
+};
+
 
     // change submit function
     const handleAllChange = () => {
