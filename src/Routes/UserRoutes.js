@@ -14,7 +14,7 @@ import ZvideoRoom from '../Pages/Meeting/ZvideoRoom'
 const UserRoutes = ({ role }) => {
     return (
         <Routes>
-            <Route path='/' exact element={<Home />} />
+            <Route path='/home' exact element={<Home />} />
             <Route path='/profile' exact element={<UserProfile />} />
             <Route path='/notification' element={<Notification />} />
             <Route path='/board' element={<Boards />} />

@@ -32,7 +32,7 @@ const Login = () => {
                     setError('Invalid Credential');
                 } else {
                     setError('');
-                    navigate('/');
+                    navigate('/home');
                 }
             } catch (error) {
                 setError(error.message)
