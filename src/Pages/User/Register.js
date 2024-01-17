@@ -17,6 +17,16 @@ const Register = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
+    const handleNameChange = (e) => {
+        const value = e.target.value
+        if (value && /\d/.test(value)) {
+            return
+        } else {
+            setName(value)
+        }
+    }
+
+
     // user registration function
     const handleRegistrationSubmit = async (e) => {
         e.preventDefault();
@@ -76,7 +86,8 @@ const Register = () => {
                 >
                     <div className="mb-2">
                         <input
-                            required value={name} onChange={(e) => setName(e.target.value)}
+                            value={name} onChange={handleNameChange} required
+
                             className="shadow appearance-none border rounded w-full 
                             py-2 px-3 text-gray-700 
                             leading-tight focus:outline-none 
