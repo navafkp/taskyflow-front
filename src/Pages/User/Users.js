@@ -28,8 +28,8 @@ const Users = () => {
     }, [userslist, userBlocked])
 
 
-    useEffect(()=>{
-        if(showModal === false){
+    useEffect(() => {
+        if (showModal === false) {
             setResult(userslist)
         }
     }, [])
@@ -57,10 +57,10 @@ const Users = () => {
         }
         BlockUser(id, value, access)
             .then((response) => {
-                dispatch(userBlockUpdate({id, value}))
+                dispatch(userBlockUpdate({ id, value }))
                 setResult((prevResult) => {
                     return prevResult.map((user) => {
-                        console.log(typeof(user.id) === typeof(id));
+
                         if (user.id === id) {
                             return {
                                 ...user,
@@ -81,8 +81,10 @@ const Users = () => {
         setSearchName(inputValue)
         if (inputValue !== null && inputValue !== '') {
             const foundUsers = userslist?.filter(
-                user => user.name.toLowerCase().includes(inputValue.toLowerCase())
-                    || user.username.toLowerCase().includes(inputValue.toLowerCase())
+                user =>
+                    ['name', 'username', 'email', 'designation', 'role'].some(key =>
+                        user[key]?.toLowerCase().includes(inputValue.toLowerCase())
+                    )
             );
             if (foundUsers?.length !== 0) {
                 setResult(foundUsers);
@@ -150,6 +152,12 @@ const Users = () => {
                                         className="px-6 py-3 text-left tracking-wider">
                                         Username
                                     </th>
+
+                                    <th scope="col"
+                                        className="px-6 py-3 text-left tracking-wider">
+                                        Designation
+                                    </th>
+
                                     <th scope="col"
                                         className="px-6 py-3 text-left tracking-wider">
                                         Email
@@ -185,6 +193,11 @@ const Users = () => {
                                             <td className="px-6 py-4 whitespace-nowrap">
                                                 {user?.username}
                                             </td>
+
+                                            <td className="px-6 py-4 whitespace-nowrap">
+                                                {user?.designation}
+                                            </td>
+
                                             <td className="px-6 py-4 whitespace-nowrap">
                                                 {user?.email}
                                             </td>

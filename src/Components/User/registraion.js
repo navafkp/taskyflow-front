@@ -23,6 +23,16 @@ const Registraion = ({ closeModal }) => {
         setRole(e.target.value)
     }
 
+    const handleNameChange = (e) => {
+        const value = e.target.value
+         if (value && /\d/.test(value)){
+             return
+         }else{
+             setName(value)
+         }
+     }
+  
+
     // registration of member or manager by the manager after logged in his account
     const handleRegistrationSubmit = async (e) => {
         e.preventDefault();
@@ -48,6 +58,7 @@ const Registraion = ({ closeModal }) => {
                     password, password2, role, designation
                 )
                 if (registrationResponse.message === 'Your Account Registered Successfully') {
+                    console.log(registrationResponse.data, '=====================')
                     dispatch(addNewUser(registrationResponse.data))
                     dispatch(Success(registrationResponse))
                     closeModal()
@@ -69,6 +80,7 @@ const Registraion = ({ closeModal }) => {
             setError("Please fill all details")
         }
     }
+
 
     return (
         <div>
@@ -94,7 +106,7 @@ const Registraion = ({ closeModal }) => {
 
                             <div className="mb-1">
                                 <input
-                                    value={name} onChange={(e) => setName(e.target.value)} required
+                                    value={name} onChange={handleNameChange} required
                                     className="shadow appearance-none border rounded w-full py-2 px-3
                                  text-gray-700 leading-tight focus:outline-none focus:shadow-outline  
                                  mt-1" id="name" type="text" placeholder="name"

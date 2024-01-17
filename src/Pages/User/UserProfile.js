@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import Header from '../../Components/header';
 import { useDispatch, useSelector } from 'react-redux'
 import { updateUser } from '../../Store/userdataSlice';
-import { ChangeDetails} from '../../Server/User/userDetail';
+import { ChangeDetails } from '../../Server/User/userDetail';
 import { CgProfile } from "react-icons/cg";
 import { setLoading } from '../../Store/loadingSlice';
 import Loading from '../../Components/loading';
@@ -32,64 +32,64 @@ const UserProfile = () => {
     // input field value change
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setData({ ...data, [name]: value })
+       
+        console.log(name, value)    
+        if (name === 'name' && /\d/.test(value)) {
+            // If numeric characters are present in the "Name" field, do not update the state
+            return;
+        }  else{
+            setData({ ...data, [name]: value })
+        }
+        
+        
+        
     };
 
     // Function to handle image upload
-    // const handleUpload = (e) => {
-    //     const file = e.target.files[0];
-    //     const reader = new FileReader();
-    //     reader.onloadend = () => {
-    //         setImage(reader.result);
-    //     };
-    //     if (file) {
-    //         reader.readAsDataURL(file);
-    //     }
-    // };
 
-    // Example using canvas to resize image
-const handleUpload = (e) => {
-    const file = e.target.files[0];
-    const reader = new FileReader();
+    const handleUpload = (e) => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        console.log("sasasa")
+        console.log(reader, 'ioio')
+        reader.onloadend = () => {
+            const img = new Image();
+            img.src = reader.result;
 
-    reader.onloadend = () => {
-        const img = new Image();
-        img.src = reader.result;
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                console.log(ctx)
+                // Resize the image if needed
+                const maxWidth = 800; // Set your maximum width
+                const maxHeight = 600; // Set your maximum height
 
-        img.onload = () => {
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
+                let width = img.width;
+                let height = img.height;
+                    console.log(width, height)
+                if (width > maxWidth || height > maxHeight) {
+                    const ratio = Math.min(maxWidth / width, maxHeight / height);
+                    width *= ratio;
+                    height *= ratio;
+                }
 
-            // Resize the image if needed
-            const maxWidth = 800; // Set your maximum width
-            const maxHeight = 600; // Set your maximum height
+                canvas.width = width;
+                canvas.height = height;
 
-            let width = img.width;
-            let height = img.height;
+                ctx.drawImage(img, 0, 0, width, height);
 
-            if (width > maxWidth || height > maxHeight) {
-                const ratio = Math.min(maxWidth / width, maxHeight / height);
-                width *= ratio;
-                height *= ratio;
-            }
+                // Convert the canvas content to base64
+                const resizedImage = canvas.toDataURL('image/jpeg');
 
-            canvas.width = width;
-            canvas.height = height;
-
-            ctx.drawImage(img, 0, 0, width, height);
-
-            // Convert the canvas content to base64
-            const resizedImage = canvas.toDataURL('image/jpeg');
-
-            // Set the resized image in state
-            setImage(resizedImage);
+                // Set the resized image in state
+                setImage(resizedImage);
+            };
         };
-    };
 
-    if (file) {
-        reader.readAsDataURL(file);
-    }
-};
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    };
 
 
     // change submit function

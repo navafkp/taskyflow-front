@@ -16,8 +16,11 @@ const Broadcast = ({ limit }) => {
   // setting 3 notification for dashboard
   useEffect(() => {
     if (limit) {
-      const filteredNotifications = allNotifications.slice(0, limit);
+      if(allNotifications?.length > 0){
+        const filteredNotifications = allNotifications?.slice(0, limit);
       setResult(filteredNotifications);
+      }
+      
     }
     else {
       setResult(allNotifications);

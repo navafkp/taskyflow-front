@@ -13,6 +13,7 @@ export const GetalluserDetail = (access, work) => {
             }
         }
     ).then((response) => {
+        console.log(response.data)
         return response.data;
     }).catch((error) => {
         throw error;

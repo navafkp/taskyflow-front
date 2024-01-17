@@ -93,7 +93,11 @@ const CreateMeeting = ({ closeModal }) => {
                             </div>
                             <div className="mb-2">
                                 <input
-                                    value={duration} onChange={(e) => setDuration(e.target.value)}
+                                    value={duration} onChange={(e) => {
+                                        const inputValue = e.target.value
+                                        const newValue  = inputValue < 0 ? 1 :inputValue;
+                                        setDuration(newValue)
+                                    }}
                                     className="shadow appearance-none border rounded w-full py-2 px-3
                                      text-gray-700 
                             leading-tight focus:outline-none focus:shadow-outline  mt-2"
