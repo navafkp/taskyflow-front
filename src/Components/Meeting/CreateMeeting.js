@@ -2,10 +2,13 @@ import React, { useState } from 'react'
 import { createMeetAxios } from '../../Server/Meeting/CreateMeet'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateMeetingData } from '../../Store/MeetingSlice'
+import { setLoading } from '../../Store/loadingSlice'
+import Loading from '../loading'
 
 const CreateMeeting = ({ closeModal }) => {
     const access = useSelector(state => state.usertoken.access)
     const { workspace, id } = useSelector(state => state.userData)
+    const load = useSelector(state => state.loading)
     const [roomID, setRoomID] = useState()
     const [description, setDescription] = useState()
     const [startingtime, setStartingtime] = useState()
@@ -32,12 +35,15 @@ const CreateMeeting = ({ closeModal }) => {
         }
         else {
             if (roomID && description && startingtime && duration && password) {
+                dispatch(setLoading(true))
                 createMeetAxios(access, id, workspace, roomID, description, startingtime, duration, password)
                     .then((response) => {
                         dispatch(updateMeetingData(response))
+                        dispatch(setLoading(false))
                         closeModal()
                     })
                     .catch((error) => {
+                        dispatch(setLoading(false))
                         setError('Error creating the meeting: ' + error.message);
                     });
             } else {
@@ -58,6 +64,7 @@ const CreateMeeting = ({ closeModal }) => {
                         </button>
                         <h3 className='uppercase mb-2 font-bold text-center text-'>Create Meeting</h3>
                         <form>
+                        {load && <Loading />}
                             <div className="mb-2">
                                 <input
                                     required value={roomID} onChange={(e) => setRoomID(e.target.value)}

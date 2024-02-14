@@ -11,6 +11,9 @@ import GetAccessToken from './utils/getAccessToken';
 import { getAllBoads } from './Store/boardSlice';
 import { getAllMeeting } from './Store/MeetingSlice';
 import { alluserDetails } from './Store/userslistSlice';
+import PasswordChange from './Components/User/PasswordChange';
+import NotFound from './Components/NotFound';
+
 
 
 function App() {
@@ -72,7 +75,10 @@ function App() {
           {/* Public Routes */}
           <Route path='/login' element={!is_authenticated ? <Login /> : <Navigate to='/dashboard' />} />
           <Route path='/register' element={!is_authenticated ? <Register /> : <Navigate to='/dashboard' />} />
-          
+          <Route path="/changepassword" element={!is_authenticated ? <PasswordChange /> : <Navigate to='/dashboard' />} />
+          {/* No path provided, it acts as a catch-all route */}
+          <Route  path='*' element={<NotFound />} />
+
         </Routes>
       </Router>
     </div>

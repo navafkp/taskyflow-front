@@ -10,13 +10,26 @@ import { updateCardDeleteion } from '../Store/cardSlice';
 import { CardDelete } from '../Server/Card/CardDelete';
 
 
-const DeletePopUp = ({ type, access, id, closeModal }) => {
+const DeletePopUp = ({ type, access, id, closeModal, room = 'None' }) => {
     const load = useSelector(state => state.loading)
     const dispatch = useDispatch()
     const [error, setError] = useState('')
+    console.log(room, 'popup')
+
+
+
+
+    
+
+   
+
+
 
     // Deleting meeting, board, card
     const handleDelete = async (e) => {
+
+        
+
         if (!access) return;
         dispatch(setLoading(true));
         let hasError = false;

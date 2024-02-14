@@ -43,5 +43,6 @@ const columnsSlice = createSlice({
     }
 })
 
-export const { clearcolumns } = columnsSlice.actions
+
+
 export default columnsSlice.reducer;

@@ -20,7 +20,7 @@ const Meeting = () => {
   const currentDate = new Date()
   const formattedDate = currentDate.toLocaleString();
 
-
+console.log(meetingState)
   // setting MeetingState from redux store - meeting data
   useEffect(() => {
     if (meetingData) {
@@ -147,8 +147,8 @@ const Meeting = () => {
                           <MdDelete onClick={(e) => setShowModal(true)} color='firebrick' size={'35px'} />
                         </button>
                         {showModal &&
-                          <DeletePopUp type={'meeting'} access={access} id={meet.id}
-                            closeModal={() => setShowModal(false)} />
+                          <DeletePopUp type={'meeting'} access={access} id={meet.id} 
+                            closeModal={() => setShowModal(false)} room={meet.roomID} />
                         }
                       </div>
                     }

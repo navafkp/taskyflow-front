@@ -197,12 +197,12 @@ const Home = () => {
                           />
                           <p className='text-center text-red-500'> {error}</p>
                           <div className='text-center  mt-2'>
-                            <button
+                            {/* <button
                               className='bg-[#D7CDCC] px-3 py-1  rounded-lg'
 
                               onClick={() => handleJoin(meet.id, meet.roomID)} key={meet.id}>
                               join now
-                            </button>
+                            </button> */}
                           </div>
                         </>
 

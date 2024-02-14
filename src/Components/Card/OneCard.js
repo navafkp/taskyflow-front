@@ -2,19 +2,21 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
     AssigneeInvite, addComment, assigneeUpdate,
-    cardEditableUpdate, getAllComment
+    cardEditableUpdate, getAllComment,
 } from '../../Store/cardSlice';
 import { MdModeEdit } from "react-icons/md";
 import { setLoading } from '../../Store/loadingSlice';
 import DeletePopUp from '../DeletePopUp';
 import { RemoveAssignee } from '../../Server/Card/RemoveAssignee';
+import { CommentUpdate } from '../../Server/Card/UpdateOneComment';
 
 const OneCard = ({ task, closeModal }) => {
     const access = useSelector(state => state.usertoken?.access)
     const userdata = useSelector(state => state.userData)
     const allboard = useSelector(state => state.boards)
     const assigneeList = useSelector(state => state.cardData.assignee)
-    const commentList = useSelector(state => state.cardData?.comments)
+    const commentListfromState = useSelector(state => state.cardData?.comments)
+    const [commentList, setCommentList] = useState([])
     const users = useSelector(state => state.users)
     const [description, setDescription] = useState(task?.description)
     const [maxMembers, setMaxMembers] = useState(task.max_members)
@@ -24,6 +26,7 @@ const OneCard = ({ task, closeModal }) => {
     const [title, setTitle] = useState(task?.title)
     const [comment, setComment] = useState('')
     const initialField = { title: false, description: false, max_members: false }
+    const [editableCommentId, setEditableCommentId] = useState(null);
     const [editableFields, setEditableFields] = useState(initialField);
     const [email, setEmail] = useState([''])
     const [selectedEmails, setSelectedEmails] = useState([]);
@@ -34,9 +37,7 @@ const OneCard = ({ task, closeModal }) => {
     const dispatch = useDispatch()
     const card_id = task?.id
 
-    useEffect(()=>{
-        console.log(task, 'tasktasktasktasktask')
-    })
+
     // getting emails from users list and setting in email state
     useEffect(() => {
         if (users && users?.length > 0) {
@@ -45,6 +46,13 @@ const OneCard = ({ task, closeModal }) => {
         }
     }, [users])
 
+  
+    useEffect(() => {
+        if (commentListfromState && commentListfromState?.length > 0) {
+
+            setCommentList(commentListfromState)
+        }
+    }, [commentListfromState])
 
     // choosing specific board from all board
     useEffect(() => {
@@ -92,6 +100,43 @@ const OneCard = ({ task, closeModal }) => {
             suggestion.toLowerCase().includes(input.toLowerCase())
         );
     };
+
+
+    const makeEditableComment = (commentId) => {
+        setEditableCommentId(commentId);
+    }
+
+
+
+
+    const handleCommentChange = (e, commentId) => {
+  
+
+        console.log(e.target.value, commentId, '0000000000000000000')
+
+        const updatedCommentList = commentList.map(comment => {
+            if (comment.id === commentId) {
+                return { ...comment, comment: e.target.value };
+            }
+            return comment;
+        });
+        console.log(updatedCommentList)
+        setCommentList(updatedCommentList)
+
+        
+
+
+    }
+
+    const handleBlur =  (commentId, newComment) => {
+        setEditableCommentId(null)
+        console.log(commentId, newComment, 'oioioioi')
+        // Send the updated comment to the backend using Axios
+
+        CommentUpdate( access, commentId, newComment ).then((res)=>{
+            console.log(res, 'here i am finally')
+        })
+    }
 
 
     // inviting members to the card
@@ -285,8 +330,8 @@ const OneCard = ({ task, closeModal }) => {
                                 {/* comments */}
                                 <div className='  mt-5 mb-3'>
                                     <h4 className='text-[#9C528B] mb-2'>Comments</h4>
-                                    <div className='w-full max-h-[150px] overflow-y-auto pb-2'>
-                                        {commentList?.length > 0 &&
+                                    <div className='w-full max-h-[150px] overflow-y-auto pb-2 relative'>
+                                        {/* {commentList?.length > 0 &&
                                             commentList?.slice().sort((a, b) => b.id - a.id).map((one) =>
                                             (<div className='block capitalize text-sm py-1 border-b'
                                                 key={one.id}
@@ -306,9 +351,51 @@ const OneCard = ({ task, closeModal }) => {
                                                     >
                                                         {new Date(one.created_at).toLocaleString()}
                                                     </p>
+                                                   
+                                                    {!editableFields.comments && <MdModeEdit color='red'
+                                                        className=' absolute left-2' onClick={() =>
+                                                            makeEditable('comments')}
+                                                    />}
+
                                                 </div>
                                             </div>)
-                                            )}
+                                            )} */}
+
+
+                                        {commentList?.length > 0 &&
+                                            commentList?.slice().sort((a, b) => b.id - a.id).map((one) => (
+                                                <div className='block capitalize text-sm py-1 border-b' key={one.id}>
+                                                    <p className='text-green-800'>{one.user_name}:</p>
+                                                    <div className='flex justify-between'>
+                                                        {editableCommentId === one.id ? (
+                                                            // Render input field for editing
+                                                            <input
+                                                                type="text"
+                                                                value={one.comment}
+                                                                onChange={(e) => handleCommentChange(e, one.id)}
+                                                                onBlur={() => handleBlur(one.id, one.comment)}
+                                                            />
+                                                        ) : (
+                                                            // Render comment text
+                                                            <p className='pl-5 text-gray-500'>{one.comment}</p>
+                                                        )}
+                                                        <p className='pl-2 text-sm font-normal text-gray-500'>
+                                                            {new Date(one.created_at).toLocaleString()}
+                                                        </p>
+                                                        {!editableCommentId && (
+                                                            <MdModeEdit
+                                                                color='red'
+                                                                className='absolute left-2'
+                                                                onClick={() => makeEditableComment(one.id)}
+                                                                
+                                                            />
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            ))
+                                        }
+
+
                                     </div>
                                     <form className='justify-center block'>
                                         <textarea
@@ -472,17 +559,17 @@ const OneCard = ({ task, closeModal }) => {
                         </div>
                     </form>
 
-                    {userdata && userdata?.role === 'manager'? (<button
+                    {userdata && userdata?.role === 'manager' ? (<button
                         className='bg-red-400 float-right mr-3 rounded-2xl my-2 px-2 py-1'
                         onClick={(e) => setShowModal(true)}>
                         Delete Card
-                    </button>) :  board && board?.visibility === 'private' && (<button
+                    </button>) : board && board?.visibility === 'private' && (<button
                         className='bg-red-400 float-right mr-3 rounded-2xl my-2 px-2 py-1'
                         onClick={(e) => setShowModal(true)}>
                         Delete Card
                     </button>)
-                    
-                     }
+
+                    }
 
                     {showModal &&
                         <DeletePopUp type={'card'} access={access} id={task.id}

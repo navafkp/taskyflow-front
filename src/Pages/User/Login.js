@@ -42,6 +42,19 @@ const Login = () => {
         }
     };
 
+
+
+    const handleForgotPasword = () => {
+        navigate('/changepassword')
+
+
+    }
+
+
+
+
+
+
     return (
         <div >
             <div
@@ -95,7 +108,7 @@ const Login = () => {
 
                     <p className='text-red-800 text-center font-bold'>{error}</p>
                     <p>{userData.authFailed ? userData.authFailed : ''}</p>
-                    <p className="text-white font-bold text-center  pt-2" >Forgot Password?</p>
+                    <p className="text-white font-bold text-center  pt-2 cursor-pointer" onClick={handleForgotPasword}>Forgot Password?</p>
                 </form>
 
                 <p className="text-black" >

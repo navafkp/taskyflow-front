@@ -18,7 +18,7 @@ const ZvideoRoom = () => {
     const appID = parseInt(process.env.REACT_APP_ZEO_APP_ID);
     const serverSecret = process.env.REACT_APP_ZEO_SERVER_SECRET
     const receivedPassword = location.state?.password;
-
+    console.log(appID, serverSecret)
 
 
     // creating meeting

@@ -9,6 +9,7 @@ import Meeting from '../Pages/Meeting/Meeting'
 import CreateMeeting from '../Components/Meeting/CreateMeeting'
 import ZvideoRoom from '../Pages/Meeting/ZvideoRoom'
 import Home from '../Pages/User/Home'
+import NotFound from '../Components/NotFound'
 
 // user routes
 const UserRoutes = ({ role }) => {
@@ -22,8 +23,10 @@ const UserRoutes = ({ role }) => {
             <Route path='/meeting' element={<Meeting />} />
             <Route path='/meeting/:roomID' element={<ZvideoRoom/>} />
             <Route path='/meeting/create-meet/' element={<CreateMeeting />} />
-
+            
             <Route path='/users' element={ role ==='manager'? <Users/> : <Navigate to='/'/>} />
+            {/* No path provided, it acts as a catch-all route */}
+            <Route  path='/*' element={<NotFound />} />
         </Routes>
     )
 }

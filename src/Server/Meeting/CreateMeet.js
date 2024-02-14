@@ -20,6 +20,7 @@ export const createMeetAxios = (access, id, workspace, roomID, description, star
             }
         }
     ).then((respose) => {
+        console.log(respose)
         return respose.data
     }).catch((error) => {
         return error

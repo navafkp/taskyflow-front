@@ -42,6 +42,7 @@ export const getAllComment = createAsyncThunk('user/getAllComment', async ({ acc
 })
 
 
+
 // editable card data update
 export const cardEditableUpdate = createAsyncThunk('user/cardEditableUpdate', async ({ access, card_id, updatedData }) => {
     const response = await CardEditUpdate(access, card_id, updatedData)
