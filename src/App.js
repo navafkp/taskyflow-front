@@ -6,7 +6,7 @@ import Login from './Pages/User/Login';
 import Register from './Pages/User/Register';
 import PrivateRoutes from './Routes/PrivateRoutes';
 import { userDetail } from './Store/userdataSlice';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import GetAccessToken from './utils/getAccessToken';
 import { getAllBoads } from './Store/boardSlice';
 import { getAllMeeting } from './Store/MeetingSlice';
